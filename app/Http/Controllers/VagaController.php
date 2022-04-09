@@ -14,7 +14,15 @@ class VagaController extends Controller
      */
     public function index()
     {
-        return 'test';
+        return response()->json([
+            'nome' => 'Justino Filipe',
+            'nomeVaga' => 'Técnico de Informática',
+            'dataInscricao' => '2022-03-25',
+            'telefone' => '+355900888500',
+            'genero' => 'M',
+            'nacionalidade' => 'Angolana',
+            'nivelAcamico' => 'Técnico médio'
+        ]);
     }
 
     /**
@@ -24,7 +32,7 @@ class VagaController extends Controller
      */
     public function create()
     {
-        //
+        return 'ola';
     }
 
     /**
@@ -46,7 +54,7 @@ class VagaController extends Controller
      */
     public function show(Vaga $vaga)
     {
-        //
+        return $vaga;
     }
 
     /**
