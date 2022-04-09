@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/vagas', 'VagasController@vagas');
+Route::get('/vagas', 'App\Http\Controllers\VagaController@index');
+//Route::resource('vagas', VagaController::class);
