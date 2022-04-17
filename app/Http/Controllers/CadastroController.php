@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vaga;
 use Illuminate\Http\Request;
-use DB;
 
-
-class VagaController extends Controller
+class CadastroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +13,16 @@ class VagaController extends Controller
      */
     public function index()
     {
-        $vagas = DB::select('select * FROM vaga');
-
-        return response()->json([
-            'vagas' => $vagas
-        ]);
+       
+      /*  return response()->json([
+            'nome' => 'Justino Filipe',
+            'nomeVaga' => 'Técnico de Informática',
+            'dataInscricao' => '2022-03-25',
+            'telefone' => '+355900888500',
+            'genero' => 'M',
+            'nacionalidade' => 'Angolana',
+            'nivelAcamico' => 'Técnico médio'
+        ]);*/
     }
 
     /**
@@ -30,7 +32,7 @@ class VagaController extends Controller
      */
     public function create()
     {
-        return 'ola';
+        //
     }
 
     /**
@@ -42,26 +44,32 @@ class VagaController extends Controller
     public function store(Request $request)
     {
         //
+        return response()->json([
+            'nome' => $request->get('name', 'valor padrão')
+            
+        ]);
+        
+        //echo($request);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vaga  $vaga
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Vaga $vaga)
+    public function show($id)
     {
-        return $vaga;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vaga  $vaga
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vaga $vaga)
+    public function edit($id)
     {
         //
     }
@@ -70,10 +78,10 @@ class VagaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vaga  $vaga
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vaga $vaga)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -81,10 +89,10 @@ class VagaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vaga  $vaga
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vaga $vaga)
+    public function destroy($id)
     {
         //
     }
