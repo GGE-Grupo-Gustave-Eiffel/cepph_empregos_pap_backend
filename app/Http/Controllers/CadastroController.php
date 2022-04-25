@@ -30,10 +30,45 @@ class CadastroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $rules = DB::table('candidato')->insert( [
+			'Nome' => 'required',
+			'BI' => 'required',
+			'Email' => 'required',
+            'nacionalidade' => 'required',
+            'Telefone' => 'required',
+            'Nivel_academico' => 'required',
+            'Anos_de_experiencia' => 'required'
+		]);
+		// $validator = Validator::make($request->all(),$rules);
+		// if ($validator->fails()) {
+		// 	return redirect('insert')
+		// 	->withInput()
+		// 	->withErrors($validator);
+		// }
+		// else{
+        //     $data = $request->input();
+		// 	try{
+		// 		$candidato = new CadastroController;
+        //         $candidato->Nome = $data['Nome'];
+        //         $candidato->BI = $data['BI'];
+		// 		$candidato->Email = $data['Email'];
+		// 		$candidato->nacionalidade = $data['nacionalidade'];
+        //         $candidato->Telefone = $data['Telefone'];
+        //         $candidato->Nivel_academico = $data['Nivel_academico'];
+        //         $candidato->Anos_de_experiencia = $data['Anos_de_experiencia'];
+		// 		$candidato->save();
+		// 		return redirect('insert')->with('status',"Insert successfully");
+		// 	}
+		// 	catch(Exception $e){
+		// 		return redirect('insert')->with('failed',"operation failed");
+		// 	}
+		// }
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -41,13 +76,19 @@ class CadastroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         /*
         return response()->json([
             'nome' => $request->get('name', 'valor padrão')
             
         ]);*/
+        // $candidato = DB::create('INSERT INTO `candidato`(`Nome`, `BI`, `Email`, `nacionalidade`, 
+        // `Telefone`, `Nivel_academico`, `Anos_de_experiencia`) ');
+
+        // return response()->json([
+        //     'candidato' => $candidato
+        // ]);
         
         
         //echo($request);
