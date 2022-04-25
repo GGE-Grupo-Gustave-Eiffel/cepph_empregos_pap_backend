@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
-class CadastroController extends Controller
+class InscritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +14,12 @@ class CadastroController extends Controller
      */
     public function index()
     {
-       
-      /*  return response()->json([
-            'nome' => 'Justino Filipe',
-            'nomeVaga' => 'Técnico de Informática',
-            'dataInscricao' => '2022-03-25',
-            'telefone' => '+355900888500',
-            'genero' => 'M',
-            'nacionalidade' => 'Angolana',
-            'nivelAcamico' => 'Técnico médio'
-        ]);*/
+        //
+        $inscritos = DB::select('select * FROM candidato');
+
+        return response()->json([
+            'incritos.' => $inscritos
+        ]);
     }
 
     /**
@@ -43,14 +40,7 @@ class CadastroController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        return response()->json([
-            'nome' => $request->get('name', 'valor padrão')
-            
-        ]);*/
-        
-        
-        //echo($request);
+        //
     }
 
     /**

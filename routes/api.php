@@ -24,3 +24,4 @@ Route::resource('vagas', App\Http\Controllers\VagaController::class);
 
 Route::resource('cadastro', App\Http\Controllers\CadastroController::class) ;
 
+Route::resource('inscritos', App\Http\Controllers\InscritoController::class);
