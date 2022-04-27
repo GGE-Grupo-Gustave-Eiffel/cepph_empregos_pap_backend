@@ -18,7 +18,7 @@ class InscritoController extends Controller
         $inscritos = DB::select('select * FROM candidato');
 
         return response()->json([
-            'incritos.' => $inscritos
+            'incritos' => $inscritos
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class CadastroController extends Controller
 {
@@ -32,7 +33,8 @@ class CadastroController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        echo($request);
+        /*
         $rules = DB::table('candidato')->insert( [
 			'Nome' => 'required',
 			'BI' => 'required',
@@ -42,6 +44,7 @@ class CadastroController extends Controller
             'Nivel_academico' => 'required',
             'Anos_de_experiencia' => 'required'
 		]);
+        */
 		// $validator = Validator::make($request->all(),$rules);
 		// if ($validator->fails()) {
 		// 	return redirect('insert')
@@ -76,8 +79,37 @@ class CadastroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
+        
+        
+
+
+           DB::table('candidato')->insert(
+                ['Nome' => $request->nome],
+                ['BI' => $request->bi],
+                ['Email' => $request->email],
+                ['nacionalidade' => $request->nacionalidade],
+                ['Telefone' => intval($request->telefone)],
+                ['Nivel_academico' => 3],
+                ['Anos_de_experiencia' => intval($request->anos_xp)]
+            );
+    
+            return response()->json([
+                'msg' => 'Candidatura enviada com sucesso!'
+            ]);
+                
+        /*
+        return response()->json([
+            //'msg' => 'Candidatura enviada com sucesso!'
+            'Nome' => $request->nome,
+            'BI' => $request->bi,
+            'Email' => $request->email,
+            'nacionalidade' => $request->nacionalidade,
+            'Telefone' => $request->telefone,
+            'Nivel_academico' => $request->nivel_academico,
+            'Anos_de_experiencia' => $request->anos_xp
+        ]);*/
         /*
         return response()->json([
             'nome' => $request->get('name', 'valor padrão')
