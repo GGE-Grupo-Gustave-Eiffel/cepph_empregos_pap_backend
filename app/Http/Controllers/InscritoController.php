@@ -15,7 +15,7 @@ class InscritoController extends Controller
     public function index()
     {
         //
-        $inscritos = DB::select('select * FROM candidato');
+        $inscritos = DB::select('select * FROM candidatos');
 
         return response()->json([
             'incritos' => $inscritos

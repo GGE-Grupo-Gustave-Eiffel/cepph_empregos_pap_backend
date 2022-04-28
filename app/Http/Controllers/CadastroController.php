@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\candidato;
 use DB;
 
 class CadastroController extends Controller
@@ -71,8 +72,6 @@ class CadastroController extends Controller
 		// }
     }
 
-    
-
     /**
      * Store a newly created resource in storage.
      *
@@ -81,49 +80,34 @@ class CadastroController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
+        DB::beginTransaction();
 
+        try {
 
-           DB::table('candidato')->insert(
-                ['Nome' => $request->nome],
-                ['BI' => $request->bi],
-                ['Email' => $request->email],
-                ['nacionalidade' => $request->nacionalidade],
-                ['Telefone' => intval($request->telefone)],
-                ['Nivel_academico' => 3],
-                ['Anos_de_experiencia' => intval($request->anos_xp)]
-            );
-    
-            return response()->json([
-                'msg' => 'Candidatura enviada com sucesso!'
-            ]);
-                
-        /*
-        return response()->json([
-            //'msg' => 'Candidatura enviada com sucesso!'
-            'Nome' => $request->nome,
-            'BI' => $request->bi,
-            'Email' => $request->email,
-            'nacionalidade' => $request->nacionalidade,
-            'Telefone' => $request->telefone,
-            'Nivel_academico' => $request->nivel_academico,
-            'Anos_de_experiencia' => $request->anos_xp
-        ]);*/
-        /*
-        return response()->json([
-            'nome' => $request->get('name', 'valor padrão')
+            $candidato = new candidato;
             
-        ]);*/
-        // $candidato = DB::create('INSERT INTO `candidato`(`Nome`, `BI`, `Email`, `nacionalidade`, 
-        // `Telefone`, `Nivel_academico`, `Anos_de_experiencia`) ');
 
-        // return response()->json([
-        //     'candidato' => $candidato
-        // ]);
-        
-        
-        //echo($request);
+            $candidato->Nome = $request->nome;
+            $candidato->BI = $request->bi;
+            $candidato->Email = $request->email;
+            //$candidato->nacionalidade = $request->nacionalidade;
+            $candidato->Telefone = $request->telefone;
+            $candidato->Nivel_academico = 3;//$request->nivel_academico;
+            $candidato->Anos_de_experiencia = $request->anos_xp;
+
+            $candidato->save();
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Candidatura enviada com sucesso!',
+            ], 201);
+
+
+        } catch(\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 
     /**
