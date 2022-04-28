@@ -90,10 +90,13 @@ class CadastroController extends Controller
             $candidato->Nome = $request->nome;
             $candidato->BI = $request->bi;
             $candidato->Email = $request->email;
-            //$candidato->nacionalidade = $request->nacionalidade;
+            $candidato->genero = $request->genero;
+            $candidato->nacionalidade = $request->nacionalidade;
             $candidato->Telefone = $request->telefone;
-            $candidato->Nivel_academico = 3;//$request->nivel_academico;
+            $candidato->data_nascimento = $request->data;
+            $candidato->Nivel_academico = $request->nivel_academico;
             $candidato->Anos_de_experiencia = $request->anos_xp;
+            //$candidato->Id_vaga = $request->Id_vaga;
 
             $candidato->save();
 
@@ -106,6 +109,10 @@ class CadastroController extends Controller
 
         } catch(\Exception $e) {
             DB::rollback();
+            return response()->json([
+                'message' => 'Verifique os dados do formulário, e volte a tentar.',
+            ], 500);
+            
             throw $e;
         }
     }
