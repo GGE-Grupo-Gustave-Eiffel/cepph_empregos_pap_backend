@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('cadastro', App\Http\Controllers\CadastroController::class) ;
 
 Route::resource('inscritos', App\Http\Controllers\InscritoController::class);
+
+Route::resource('vagas', App\Http\Controllers\VagaController::class);

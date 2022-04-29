@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+//use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vaga extends Model
+class vaga extends Model
 {
-    use HasFactory;
+    //use HasFactory;
+    public $timestamps = false;
 }
