@@ -47,11 +47,12 @@ class VagaController extends Controller
 
                 $vaga = new vaga;
                 
+                //$vaga->Id = 100;
+                $vaga->Departamento = $request->departamento;
+                $vaga->Numero_de_vagas = $request->numero_de_vagas;
+                $vaga->Limite_de_candidatura = $request->limite_de_candidatura;
+                $vaga->cargo = $request->Cargo;
 
-                $vaga->Departamento = $request->Departamento;
-                $vaga->Numero_de_vagas = $request->Numero_de_vagas;
-                $vaga->Limite_de_candidatura = $request->Limite_de_candidatura;
-                $vaga->Cargo = $request->cargo;
                 $vaga->save();
 
                 DB::commit();
@@ -63,7 +64,13 @@ class VagaController extends Controller
 
             } catch(\Exception $e) {
                 DB::rollback();
+                echo($e);
+                return response()->json([
+                    'message' => 'Verifique os dados do formulário, e volte a tentar.',
+                ], 500);
+                
                 throw $e;
+
             }
         }
 
